@@ -14,10 +14,8 @@ function getPrice(cars, rentals){
 	for (i=0; i<3; i++){
 		date1 = new Date(rentals[i].pickupDate);
 		date2 = new Date(rentals[i].returnDate);
-		date3 = Math.abs(date2 - date1) / (1000*60*60*24);
+		date3 = Math.abs(date2 - date1) / (1000*60*60*24) + 1;
 		priceKm = cars[i].pricePerKm * rentals[i].distance;
-		if (date3 == 0)
-			date3 = 1;
 		priceDay = cars[i].pricePerDay * date3;
 		priceTotal = priceKm + priceDay;
 		document.write('Total price : ' + priceTotal + ' for ' + date3 + ' days and ' + rentals[i].distance + ' km</br>');
