@@ -15,6 +15,7 @@ function getPrice(cars, rentals){
 	var assistance;
 	var drivy;
 	var moneyBrother;
+	var reduction;
 	for (i=0; i<3; i++){
 		date1 = new Date(rentals[i].pickupDate);
 		date2 = new Date(rentals[i].returnDate);
@@ -33,7 +34,11 @@ function getPrice(cars, rentals){
 		insurance = 0.5 * 0.3 * priceTotal;
 		assistance = 1 * date3;
 		drivy = insurance - assistance;
-		moneyBrother = 0.7 * priceTotal
+		moneyBrother = 0.7 * priceTotal;
+		if (rentals[i].options.deductibleReduction){
+			drivy += 4 * date3;
+			priceTotal += 4 * date3;
+		}
 		document.write('Total price : ' + priceTotal + ' for ' + date3 + ' days and ' + rentals[i].distance + ' km</br>' +
 						'Insurance takes ' + insurance + ', assistance takes ' + assistance + ' and drivy takes ' + drivy + '</br>' +
 						'Brother gets ' + moneyBrother + '</br></br>');
