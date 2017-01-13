@@ -2,6 +2,28 @@
 
 //list of cars
 //useful for ALL exercises
+
+function getPrice(cars, rentals){
+	var i;
+	var priceKm;
+	var priceDay;
+	var priceTotal;
+	var date1;
+	var date2;
+	var date3;
+	for (i=0; i<3; i++){
+		date1 = new Date(rentals[i].pickupDate);
+		date2 = new Date(rentals[i].returnDate);
+		date3 = Math.abs(date2 - date1) / (1000*60*60*24);
+		priceKm = cars[i].pricePerKm * rentals[i].distance;
+		if (date3 == 0)
+			date3 = 1;
+		priceDay = cars[i].pricePerDay * date3;
+		priceTotal = priceKm + priceDay;
+		document.write('Total price : ' + priceTotal + ' for ' + date3 + ' days and ' + rentals[i].distance + ' km</br>');
+	}
+}
+
 var cars = [{
   'id': 'p306',
   'vehicule': 'peugeot 306',
@@ -165,7 +187,8 @@ var rentalModifications = [{
   'pickupDate': '2015-12-05'
 }];
 
-console.log(cars);
+getPrice(cars, rentals);
+//console.log(cars);
 console.log(rentals);
-console.log(actors);
-console.log(rentalModifications);
+//console.log(actors);
+//console.log(rentalModifications);
